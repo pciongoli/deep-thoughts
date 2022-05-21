@@ -27,7 +27,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
    app.use(express.static(path.join(__dirname, "../client/build")));
 }
-
+// wildcard Get route * respond to get request with the production-ready REact front-end-code
 app.get("*", (req, res) => {
    res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
