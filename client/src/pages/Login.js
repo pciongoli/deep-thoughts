@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
+// umport AuthService functionality
+import Auth from "../utils/auth";
+
 const Login = (props) => {
    const [formState, setFormState] = useState({ email: "", password: "" });
 
@@ -26,7 +29,8 @@ const Login = (props) => {
             variables: { ...formState },
          });
 
-         console.log(data);
+         //  directed to homepage with token stored to localStorage upon successful request
+         Auth.login(data.login.token);
       } catch (e) {
          console.error(e);
       }
